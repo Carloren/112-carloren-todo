@@ -121,9 +121,7 @@ const Home = () => {
 
 	return (
 		<div id="taskList" className="d-flex flex-column text-center">
-			<form>
 			<input type="text" className="rounded p-1 my-3 mx-auto" placeholder="Usuario" onKeyDown={changeUser} />
-			</form>
 			<h1 className="mb-3">{usuario === "" ? "Escriba su usuario" : "Quehaceres de " + usuario + ":"}</h1>
 			<ul id="todo" className="shadow-lg border list-group border align-self-center m-0">
 				<li className="border-0 border-bottom list-group-item align-self-center fs-5" style={{ width: "20em" }}><input type="text" className="w-100 px-0" placeholder="Añadir tarea" onKeyDown={addTask} /></li>
