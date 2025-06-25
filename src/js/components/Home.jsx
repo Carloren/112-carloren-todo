@@ -112,9 +112,9 @@ const Home = () => {
 
 	return (
 		<div id="taskList" className="d-flex flex-column text-center">
-			<input type="text" className="rounded p-2 my-3 mx-auto" placeholder="Usuario" onKeyDown={changeUser} />
+			<input type="text" className="shadow-lg rounded p-2 my-3 mx-auto" placeholder="Usuario" onKeyDown={changeUser} />
 			<h1 className="mb-3">{usuario === "" ? "Escriba su usuario" : "Quehaceres de " + usuario + ":"}</h1>
-			<ul id="todo" className="shadow-lg border list-group border align-self-center m-0">
+			<ul id="todo" className="shadow-lg list-group border align-self-center m-0">
 				<li className="border-0 border-bottom list-group-item align-self-center fs-5" style={{ width: "20em" }}><input type="text" className="w-100 px-0" placeholder="Añadir tarea" onKeyDown={addTask} /></li>
 
 				{taskList.map((item) => (
