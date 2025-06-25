@@ -23,7 +23,7 @@ const Home = () => {
 
 			}) 			// promete que si llega la info la guardo en un formato, en este caso json (no es una extensión, es formato de datos) para poder interpretarla y crear una clase
 			.then((data) => Array.isArray(data.todos) ? setTaskList(data.todos) : console.log("No hay usuario"))  	//promete que si se formatea bien lo guarda en un espacio, en este caso data, y lo procesa, en ese caso, hace un console.log
-			.catch((error) => console.log(error)) 			//si algo sale mal, avisa
+			.catch() 			//si algo sale mal, avisa
 	}
 
 	function addTask(event) {
@@ -40,21 +40,16 @@ const Home = () => {
 				}
 			})
 				.then((response) => {
-					console.log(response);
 					if (response.status === 201) {
 						getTaskList()
 					}
 
 					return response.json()
 				})
-				.then((data) => console.log(data))
-				.catch((error) => console.log(error))
-
-
-
+				.then()
+				.catch()
 
 			event.target.value = ""
-
 
 		}
 
@@ -63,13 +58,12 @@ const Home = () => {
 	function deleteTask(id) {
 		fetch('https://playground.4geeks.com/todo/todos/' + id, { method: "DELETE" })
 			.then((response) => {
-				console.log(response);
 				if (response.status === 204) {
 					getTaskList()
 				}
 			})
-			.then((data) => console.log(data))
-			.catch((error) => console.log(error))
+			.then()
+			.catch()
 
 	}
 
@@ -78,21 +72,19 @@ const Home = () => {
 			method: "POST"
 		})
 			.then((response) => {
-				console.log(response);
 				if (response.status === 201) {
 					getTaskList()
 				}
 				return response.json()
 			})
-			.then((data) => console.log(data))
-			.catch((error) => console.log(error))
+			.then()
+			.catch()
 	}
 
 	function changeUser(event) {
 		if (event.key === "Enter") {
 			setUsuarioAnterior(usuario)
 			setUsuario(event.target.value === "" ? usuario : event.target.value.toLowerCase())
-			console.log(usuario);
 			event.target.value = ""
 
 		}
@@ -102,15 +94,14 @@ const Home = () => {
 		fetch('https://playground.4geeks.com/todo/users/' + user, { method: "DELETE" })
 			.then((response) => {
 				if (confirm("¿Quieres borrar el usuario " + usuario + "?")) {
-					console.log(response);
 					if (response.status === 204) {
 						setUsuario(usuarioAnterior)
 					}
 				}
 
 			})
-			.then((data) => console.log(data))
-			.catch((error) => console.log(error))
+			.then()
+			.catch()
 
 	}
 
@@ -121,7 +112,7 @@ const Home = () => {
 
 	return (
 		<div id="taskList" className="d-flex flex-column text-center">
-			<input type="text" className="rounded p-1 my-3 mx-auto" placeholder="Usuario" onKeyDown={changeUser} />
+			<input type="text" className="rounded p-2 my-3 mx-auto" placeholder="Usuario" onKeyDown={changeUser} />
 			<h1 className="mb-3">{usuario === "" ? "Escriba su usuario" : "Quehaceres de " + usuario + ":"}</h1>
 			<ul id="todo" className="shadow-lg border list-group border align-self-center m-0">
 				<li className="border-0 border-bottom list-group-item align-self-center fs-5" style={{ width: "20em" }}><input type="text" className="w-100 px-0" placeholder="Añadir tarea" onKeyDown={addTask} /></li>
